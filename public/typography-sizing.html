@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+    <title>Typography Sizing</title>
+    <style>
+      :root {
+        --scaling-factor: 1.25;
+      }
+
+      /* reset */
+      .examples h1,
+      .examples h2,
+      .examples h3,
+      .examples h4,
+      .examples h5,
+      .examples h6,
+      .examples p {
+        margin: 0;
+        padding: 0;
+        /* line-height: normal; */
+        /* letter-spacing: normal; */
+        /* font-weight: normal; */
+      }
+
+      .examples small {
+        color: var(--accent);
+      }
+
+      .sized-box-small {
+        height: 3rem;
+      }
+
+      .system-ui {
+        font-family: system-ui;
+      }
+
+      .arial {
+        font-family: Arial;
+      }
+
+      .sans-serif {
+        font-family: sans-serif;
+      }
+
+      .display {
+        /* font-size: calc(
+          1.15rem * var(--scaling-factor) * var(--scaling-factor) *
+            var(--scaling-factor) * var(--scaling-factor) *
+            var(--scaling-factor) * var(--scaling-factor)
+        ); */
+        font-size: clamp(3rem, 10vw, 6rem);
+        font-weight: 700;
+        letter-spacing: -0.2vw;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 5vw, 3rem);
+        font-weight: 700;
+        letter-spacing: -0.1vw;
+      }
+      h2 {
+        font-size: clamp(2rem, 4vw, 2.5rem);
+        font-weight: 700;
+        letter-spacing: -0.07vw;
+      }
+      h3 {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 700;
+        letter-spacing: -0.05vw;
+      }
+      h4 {
+        font-size: clamp(1rem, 2vw, 1.5rem);
+        font-weight: 700;
+        letter-spacing: -0.03vw;
+      }
+      h5 {
+        font-size: 1rem;
+        font-weight: 700;
+      }
+      h6 {
+        font-size: 1rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 0.4rem;
+      }
+
+      section {
+        display: none;
+      }
+
+      section.active {
+        padding: 0;
+        border: 0;
+        margin: 0;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="examples">
+      <div class="tabs">
+        <button class="tab-button active" data-target="system-ui">
+          System UI
+        </button>
+        <button class="tab-button" data-target="arial">Arial</button>
+        <button class="tab-button" data-target="sans-serif">Sans Serif</button>
+      </div>
+      <section id="system-ui" class="active">
+        <div class="system-ui">
+          <h1 class="display">Entrepreneur System UI</h1>
+          <small>Heading 1 (display)</small>
+          <div class="sized-box-small"></div>
+          <h1>The Psychology of User Experience</h1>
+          <small>Heading 1</small>
+          <div class="sized-box-small"></div>
+          <h2>How to Validate Your App Idea</h2>
+          <small>Heading 2</small>
+          <div class="sized-box-small"></div>
+          <h3>The Psychology of User Experience</h3>
+          <small>Heading 3</small>
+          <div class="sized-box-small"></div>
+          <h4>5 Ways AI is Transforming Small Business</h4>
+          <small>Heading 4</small>
+          <div class="sized-box-small"></div>
+          <h5>Unlocking SEO Potential</h5>
+          <small>Heading 5</small>
+          <div class="sized-box-small"></div>
+          <h6>Rapid Prototyping</h6>
+          <small>Heading 6</small>
+          <p>
+            Startups face immense pressure to move quickly without sacrificing
+            quality. Rapid prototyping allows teams to test ideas, iterate
+            designs, and gather user feedback efficiently. By prioritizing
+            functionality over perfection, startups can avoid costly missteps
+            and deliver a product that aligns with both user needs and business
+            goals.
+          </p>
+          <small>Paragraph</small>
+        </div>
+      </section>
+      <section id="arial">
+        <div class="arial">
+          <h1 class="display">Entrepreneur Arial</h1>
+          <small>Heading 1 (display)</small>
+          <div class="sized-box-small"></div>
+          <h1>The Psychology of User Experience</h1>
+          <small>Heading 1</small>
+          <div class="sized-box-small"></div>
+          <h2>How to Validate Your App Idea</h2>
+          <small>Heading 2</small>
+          <div class="sized-box-small"></div>
+          <h3>The Psychology of User Experience</h3>
+          <small>Heading 3</small>
+          <div class="sized-box-small"></div>
+          <h4>5 Ways AI is Transforming Small Business</h4>
+          <small>Heading 4</small>
+          <div class="sized-box-small"></div>
+          <h5>Unlocking SEO Potential</h5>
+          <small>Heading 5</small>
+          <div class="sized-box-small"></div>
+          <h6>Rapid Prototyping</h6>
+          <small>Heading 6</small>
+          <p>
+            Startups face immense pressure to move quickly without sacrificing
+            quality. Rapid prototyping allows teams to test ideas, iterate
+            designs, and gather user feedback efficiently. By prioritizing
+            functionality over perfection, startups can avoid costly missteps
+            and deliver a product that aligns with both user needs and business
+            goals.
+          </p>
+          <small>Paragraph</small>
+        </div>
+      </section>
+      <section id="sans-serif">
+        <div class="sans-serif">
+          <h1 class="display">Entrepreneur Sans Serif</h1>
+          <small>Heading 1 (display)</small>
+          <div class="sized-box-small"></div>
+          <h1>The Psychology of User Experience</h1>
+          <small>Heading 1</small>
+          <div class="sized-box-small"></div>
+          <h2>How to Validate Your App Idea</h2>
+          <small>Heading 2</small>
+          <div class="sized-box-small"></div>
+          <h3>The Psychology of User Experience</h3>
+          <small>Heading 3</small>
+          <div class="sized-box-small"></div>
+          <h4>5 Ways AI is Transforming Small Business</h4>
+          <small>Heading 4</small>
+          <div class="sized-box-small"></div>
+          <h5>Unlocking SEO Potential</h5>
+          <small>Heading 5</small>
+          <div class="sized-box-small"></div>
+          <h6>Rapid Prototyping</h6>
+          <small>Heading 6</small>
+          <p>
+            Startups face immense pressure to move quickly without sacrificing
+            quality. Rapid prototyping allows teams to test ideas, iterate
+            designs, and gather user feedback efficiently. By prioritizing
+            functionality over perfection, startups can avoid costly missteps
+            and deliver a product that aligns with both user needs and business
+            goals.
+          </p>
+          <small>Paragraph</small>
+        </div>
+      </section>
+    </div>
+  </body>
+  <script>
+    // JavaScript for tab functionality
+    const buttons = document.querySelectorAll(".tab-button");
+    const sections = document.querySelectorAll("section");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        // Remove active class from all buttons and sections
+        buttons.forEach((btn) => btn.classList.remove("active"));
+        sections.forEach((section) => section.classList.remove("active"));
+
+        // Add active class to the clicked button and corresponding section
+        button.classList.add("active");
+        const target = button.getAttribute("data-target");
+        document.getElementById(target).classList.add("active");
+      });
+    });
+  </script>
+</html>
