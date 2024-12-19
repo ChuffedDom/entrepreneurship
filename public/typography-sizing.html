@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
     <title>Typography Sizing</title>
     <style>
       :root {
@@ -46,30 +45,54 @@
       }
 
       .display {
-        /* font-size: calc(
-          1.15rem * var(--scaling-factor) * var(--scaling-factor) *
-            var(--scaling-factor) * var(--scaling-factor) *
-            var(--scaling-factor) * var(--scaling-factor)
-        ); */
-        font-size: clamp(3rem, 10vw, 6rem);
+        --display-base-size: calc(var(--scaling-factor) * 3rem);
+        --display-font-size: clamp(
+          var(--display-base-size),
+          10vw,
+          calc(1.5 * var(--display-base-size))
+        );
+        font-size: var(--display-font-size);
+        line-height: 0.95;
         font-weight: 700;
-        letter-spacing: -0.2vw;
+        letter-spacing: calc(var(--display-font-size) * -0.04);
+        text-wrap: balance;
       }
 
       h1 {
-        font-size: clamp(2.5rem, 5vw, 3rem);
+        --h1-base-size: calc(var(--scaling-factor) * 2rem);
+        --h1-font-size: clamp(
+          var(--h1-base-size),
+          5vw,
+          calc(1.5 * var(--h1-base-size))
+        );
+        font-size: var(--h1-font-size);
+        line-height: 0.95;
         font-weight: 700;
-        letter-spacing: -0.1vw;
+        letter-spacing: calc(var(--h1-font-size) * -0.04);
+        text-wrap: balance;
       }
       h2 {
-        font-size: clamp(2rem, 4vw, 2.5rem);
+        --h2-base-size: calc(var(--scaling-factor) * 1.5rem);
+        --h2-font-size: clamp(
+          var(--h2-base-size),
+          4vw,
+          calc(1.5 * var(--h2-base-size))
+        );
+        font-size: var(--h2-font-size);
         font-weight: 700;
-        letter-spacing: -0.07vw;
+        letter-spacing: calc(var(--h2-font-size) * -0.04);
+        text-wrap: balance;
       }
       h3 {
-        font-size: clamp(1.5rem, 3vw, 2rem);
+        --h3-base-size: calc(var(--scaling-factor) * 1.25rem);
+        --h3-font-size: clamp(
+          var(--h3-base-size),
+          3vw,
+          calc(1.5 * var(--h3-base-size))
+        );
+        font-size: var(--h3-font-size);
         font-weight: 700;
-        letter-spacing: -0.05vw;
+        letter-spacing: calc(var(--h3-font-size) * -0.04);
       }
       h4 {
         font-size: clamp(1rem, 2vw, 1.5rem);
@@ -81,10 +104,15 @@
         font-weight: 700;
       }
       h6 {
-        font-size: 1rem;
+        font-size: calc(1rem * var(--scaling-factor));
         text-transform: uppercase;
         font-weight: 700;
         letter-spacing: 0.4rem;
+      }
+
+      p {
+        font-size: calc(1rem * var(--scaling-factor));
+        line-height: 2;
       }
 
       section {
@@ -97,17 +125,16 @@
         margin: 0;
         display: block;
       }
+
+      .examples {
+        width: auto;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
     </style>
   </head>
   <body>
     <div class="examples">
-      <div class="tabs">
-        <button class="tab-button active" data-target="system-ui">
-          System UI
-        </button>
-        <button class="tab-button" data-target="arial">Arial</button>
-        <button class="tab-button" data-target="sans-serif">Sans Serif</button>
-      </div>
       <section id="system-ui" class="active">
         <div class="system-ui">
           <h1 class="display">Entrepreneur System UI</h1>
@@ -119,15 +146,13 @@
           <h2>How to Validate Your App Idea</h2>
           <small>Heading 2</small>
           <div class="sized-box-small"></div>
-          <h3>The Psychology of User Experience</h3>
+          <h3>
+            The Psychology of User Experience The Psychology of User Experience
+            The Psychology of User Experience
+          </h3>
           <small>Heading 3</small>
           <div class="sized-box-small"></div>
-          <h4>5 Ways AI is Transforming Small Business</h4>
-          <small>Heading 4</small>
-          <div class="sized-box-small"></div>
-          <h5>Unlocking SEO Potential</h5>
-          <small>Heading 5</small>
-          <div class="sized-box-small"></div>
+
           <h6>Rapid Prototyping</h6>
           <small>Heading 6</small>
           <p>
@@ -155,12 +180,7 @@
           <h3>The Psychology of User Experience</h3>
           <small>Heading 3</small>
           <div class="sized-box-small"></div>
-          <h4>5 Ways AI is Transforming Small Business</h4>
-          <small>Heading 4</small>
-          <div class="sized-box-small"></div>
-          <h5>Unlocking SEO Potential</h5>
-          <small>Heading 5</small>
-          <div class="sized-box-small"></div>
+
           <h6>Rapid Prototyping</h6>
           <small>Heading 6</small>
           <p>
@@ -188,12 +208,7 @@
           <h3>The Psychology of User Experience</h3>
           <small>Heading 3</small>
           <div class="sized-box-small"></div>
-          <h4>5 Ways AI is Transforming Small Business</h4>
-          <small>Heading 4</small>
-          <div class="sized-box-small"></div>
-          <h5>Unlocking SEO Potential</h5>
-          <small>Heading 5</small>
-          <div class="sized-box-small"></div>
+
           <h6>Rapid Prototyping</h6>
           <small>Heading 6</small>
           <p>
@@ -207,6 +222,27 @@
           <small>Paragraph</small>
         </div>
       </section>
+      <div class="sized-box-small"></div>
+      <div class="tabs">
+        <button class="tab-button active" data-target="system-ui">
+          System UI
+        </button>
+        <button class="tab-button" data-target="arial">Arial</button>
+        <button class="tab-button" data-target="sans-serif">Sans Serif</button>
+      </div>
+      <div class="slider-container">
+        <input
+          type="range"
+          id="scalingSlider"
+          min="1.0"
+          max="2.0"
+          step="0.01"
+          value="1.25"
+        />
+        <div class="output">
+          Scaling Factor: <span id="scalingValue">1.25</span>
+        </div>
+      </div>
     </div>
   </body>
   <script>
@@ -225,6 +261,19 @@
         const target = button.getAttribute("data-target");
         document.getElementById(target).classList.add("active");
       });
+    });
+  </script>
+  <script>
+    // JavaScript to handle the slider
+    const slider = document.getElementById("scalingSlider");
+    const output = document.getElementById("scalingValue");
+
+    slider.addEventListener("input", () => {
+      const value = slider.value;
+      // Update the CSS variable
+      document.documentElement.style.setProperty("--scaling-factor", value);
+      // Update the displayed value
+      output.textContent = value;
     });
   </script>
 </html>
