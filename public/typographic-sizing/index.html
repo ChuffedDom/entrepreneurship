@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../reset.css" />
+    <link rel="stylesheet" href="../colour.css" />
+    <link rel="stylesheet" href="../typography.css" />
+    <link rel="stylesheet" href="../layout.css" />
+
+    <title>Typography Sizing</title>
+    <style>
+      :root {
+        --example-scaling-factor: 1.25;
+      }
+
+      /* reset */
+      .examples h1,
+      .examples h2,
+      .examples h3,
+      .examples h4,
+      .examples h5,
+      .examples h6,
+      .examples p {
+        margin: 0;
+        padding: 0;
+        /* line-height: normal; */
+        /* letter-spacing: normal; */
+        /* font-weight: normal; */
+      }
+
+      .examples small {
+        color: var(--accent);
+      }
+
+      .example .sized-box-small {
+        height: calc(3rem * var(--example-scaling-factor));
+      }
+
+      .system-ui {
+        font-family: system-ui;
+      }
+
+      .arial {
+        font-family: Arial;
+      }
+
+      .sans-serif {
+        font-family: sans-serif;
+      }
+
+      .examples .display {
+        --display-base-size: calc(var(--example-scaling-factor) * 3rem);
+        --display-font-size: clamp(
+          var(--display-base-size),
+          10vw,
+          calc(1.5 * var(--display-base-size))
+        );
+        font-size: var(--display-font-size);
+        line-height: 0.95;
+        font-weight: 700;
+        letter-spacing: calc(var(--display-font-size) * -0.04);
+        text-wrap: balance;
+        overflow-wrap: break-word;
+      }
+
+      .examples h1 {
+        --h1-base-size: calc(var(--example-scaling-factor) * 2rem);
+        --h1-font-size: clamp(
+          var(--h1-base-size),
+          5vw,
+          calc(1.5 * var(--h1-base-size))
+        );
+        font-size: var(--h1-font-size);
+        line-height: 0.95;
+        font-weight: 700;
+        letter-spacing: calc(var(--h1-font-size) * -0.04);
+        text-wrap: balance;
+      }
+      .examples h2 {
+        --h2-base-size: calc(var(--example-scaling-factor) * 1.5rem);
+        --h2-font-size: clamp(
+          var(--h2-base-size),
+          4vw,
+          calc(1.5 * var(--h2-base-size))
+        );
+        font-size: var(--h2-font-size);
+        font-weight: 700;
+        letter-spacing: calc(var(--h2-font-size) * -0.04);
+        text-wrap: balance;
+      }
+      .example h3 {
+        --h3-base-size: calc(var(--example-scaling-factor) * 1.25rem);
+        --h3-font-size: clamp(
+          var(--h3-base-size),
+          3vw,
+          calc(1.5 * var(--h3-base-size))
+        );
+        font-size: var(--h3-font-size);
+        font-weight: 700;
+        letter-spacing: calc(var(--h3-font-size) * -0.04);
+      }
+      .examples h6 {
+        font-size: calc(1rem * var(--example-scaling-factor));
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 0.4rem;
+      }
+
+      .examples p {
+        font-size: calc(1rem * var(--example-scaling-factor));
+        line-height: 2;
+        max-width: 75ch;
+      }
+
+      section {
+        display: none;
+      }
+
+      section.active {
+        padding: 0;
+        border: 0;
+        margin: 0;
+        display: block;
+      }
+
+      .examples {
+        width: auto;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* Styling the code block */
+      pre {
+        background-color: var(--primary);
+        color: var(--white);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto; /* Horizontal scrolling for long lines */
+        font-family: "Fira Code", monospace;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 3rem;
+      }
+
+      code {
+        display: block;
+        color: var(--white);
+      }
+
+      /* Highlighting specific syntax */
+      .language-css .token.property {
+        color: #98c379; /* Properties */
+      }
+
+      .language-css .token.punctuation {
+        color: #d19a66; /* Brackets, colons */
+      }
+
+      .language-css .token.function,
+      .language-css .token.unit {
+        color: #61afef; /* Functions and units */
+      }
+
+      .language-css .token.number {
+        color: #d19a66; /* Numbers */
+      }
+
+      .language-css .token.variable {
+        color: #c678dd; /* Variables */
+      }
+
+      .typographic-sizing-tool {
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 3rem;
+        padding-top: 3rem;
+        color: var(--white);
+      }
+
+      .slider-container {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 0.5rem;
+        max-width: 600px;
+      }
+
+      .slider-container label {
+        font-weight: bold;
+      }
+
+      .slider-container input {
+        width: 100%;
+      }
+
+      button {
+        background-color: var(--primary);
+        padding: 0.5rem 2rem;
+        font-weight: bold;
+        color: var(--call-to-action);
+        text-transform: uppercase;
+        letter-spacing: 0.2rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--call-to-action);
+      }
+
+      button.active {
+        background-color: var(--call-to-action);
+        padding: 0.5rem 2rem;
+        font-weight: bold;
+        color: var(--black);
+        text-transform: uppercase;
+        letter-spacing: 0.2rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--call-to-action);
+      }
+
+      .tabs {
+        display: flex;
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
+    </style>
+  </head>
+  <body style="background-color: var(--primary)">
+    <section class="primary" style="display: block; visibility: visible">
+      <div class="sized-box-small"></div>
+      <a style="padding-left: 1vw; font-size: 1.5rem" href="/">&#8592; Home</a>
+      <div class="sized-box-small"></div>
+    </section>
+    <div class="typographic-sizing-tool">
+      <div class="controller">
+        <h1>Typographic Sizing Tool</h1>
+        <div class="sized-box-small"></div>
+        <p>
+          The size of a the font is dependant on the scale of all the fonts, and
+          how the fonts are sized to each other. I started with a scale and all
+          other sizing is generated.
+          <strong>View on desktop to check all resolutions.</strong>
+        </p>
+        <div class="sized-box-large"></div>
+        <!-- Slider to control scale -->
+        <div class="slider-container">
+          <label for="hue-slider"
+            >Scaling Factor: <span id="scalingValue">1.25</span></label
+          >
+          <input
+            type="range"
+            id="scalingSlider"
+            min="1.0"
+            max="2.0"
+            step="0.01"
+            value="1.25"
+          />
+        </div>
+        <div class="sized-box-small"></div>
+        <div class="tabs">
+          <button class="tab-button active" data-target="system-ui">
+            System UI
+          </button>
+          <button class="tab-button" data-target="sans-serif">
+            Sans Serif
+          </button>
+          <button class="tab-button" data-target="arial">Arial</button>
+        </div>
+      </div>
+    </div>
+    <div class="sized-box-medium"></div>
+    <div class="sized-box-small"></div>
+    <div class="sized-box-small"></div>
+    <div class="examples">
+      <section id="system-ui" class="active primary">
+        <div class="system-ui">
+          <h1 class="display">Big Display Heading</h1>
+          <small>Heading 1 (display)</small>
+          <div class="sized-box-large"></div>
+          <h1>An Attention Grabbing Headline</h1>
+          <small>Heading 1</small>
+          <div class="sized-box-large"></div>
+          <h2>A Heading for Longer Line of Text and Starting Sections</h2>
+          <small>Heading 2</small>
+          <div class="sized-box-large"></div>
+          <h3>
+            A Small Heading to Head a sub section, often with longer title in
+            order convey some specificity
+          </h3>
+          <small>Heading 3</small>
+          <div class="sized-box-large"></div>
+
+          <h6>Heading for Listed Paragraphs</h6>
+          <p>
+            To view the difference in various sizing, move the sliding scale for
+            Scaling Factor above. All font sizes and line height (as well as the
+            gap between each heading) is calculated from a scale factor. This
+            leaves out the need to go in and make granular decisions above every
+            heading and paragraph. Therefore, every bit of sizing remain
+            proportionate.
+          </p>
+          <p>
+            The only font loaded is System UI, Sans Serif, and Arial. This has
+            high accessibility and high compatability; you don't want people not
+            adopting because of bad typography choices.
+          </p>
+          <small>Heading 6 with Paragraph</small>
+        </div>
+      </section>
+      <section id="arial" class="primary">
+        <div class="arial">
+          <h1 class="display">Big Display Heading</h1>
+          <small>Heading 1 (display)</small>
+          <div class="sized-box-large"></div>
+          <h1>An Attention Grabbing Headline</h1>
+          <small>Heading 1</small>
+          <div class="sized-box-large"></div>
+          <h2>A Heading for Longer Line of Text and Starting Sections</h2>
+          <small>Heading 2</small>
+          <div class="sized-box-large"></div>
+          <h3>
+            A Small Heading to Head a sub section, often with longer title in
+            order convey some specificity
+          </h3>
+          <small>Heading 3</small>
+          <div class="sized-box-large"></div>
+
+          <h6>Heading for Listed Paragraphs</h6>
+          <p>
+            To view the difference in various sizing, move the sliding scale for
+            Scaling Factor above. All font sizes and line height (as well as the
+            gap between each heading) is calculated from a scale factor. This
+            leaves out the need to go in and make granular decisions above every
+            heading and paragraph. Therefore, every bit of sizing remain
+            proportionate.
+          </p>
+          <p>
+            The only font loaded is System UI, Sans Serif, and Arial. This has
+            high accessibility and high compatability; you don't want people not
+            adopting because of bad typography choices.
+          </p>
+          <small>Heading 6 with Paragraph</small>
+        </div>
+      </section>
+      <section id="sans-serif" class="primary">
+        <div class="sans-serif">
+          <h1 class="display">Big Display Heading</h1>
+          <small>Heading 1 (display)</small>
+          <div class="sized-box-large"></div>
+          <h1>An Attention Grabbing Headline</h1>
+          <small>Heading 1</small>
+          <div class="sized-box-large"></div>
+          <h2>A Heading for Longer Line of Text and Starting Sections</h2>
+          <small>Heading 2</small>
+          <div class="sized-box-large"></div>
+          <h3>
+            A Small Heading to Head a sub section, often with longer title in
+            order convey some specificity
+          </h3>
+          <small>Heading 3</small>
+          <div class="sized-box-large"></div>
+
+          <h6>Heading for Listed Paragraphs</h6>
+          <p>
+            To view the difference in various sizing, move the sliding scale for
+            Scaling Factor above. All font sizes and line height (as well as the
+            gap between each heading) is calculated from a scale factor. This
+            leaves out the need to go in and make granular decisions above every
+            heading and paragraph. Therefore, every bit of sizing remain
+            proportionate.
+          </p>
+          <p>
+            The only font loaded is System UI, Sans Serif, and Arial. This has
+            high accessibility and high compatability; you don't want people not
+            adopting because of bad typography choices.
+          </p>
+          <small>Heading 6 with Paragraph</small>
+        </div>
+      </section>
+      <div class="sized-box-small"></div>
+    </div>
+    <div class="sized-box-massive"></div>
+    <section class="light">
+      <div class="sized-box-massive"></div>
+      <div class="long-form">
+        <h1>Typographic Sizing</h1>
+        <p>
+          Choosing and sizing fonts is beyond the necessary when building a
+          landing page. There is no font fancy enough to help you convert,
+          whilst keeping things accessible and legible.
+        </p>
+        <h2>Fonts should be easy</h2>
+        <p>
+          The Entrepreneurship System looks to be as communicative as possible.
+          Therefore, it lends itself heavily from Swiss design principles.
+        </p>
+        <p>You only need one font, and that is a clear, sans serif, style.</p>
+        <p>
+          The problem this is solving for is choosing, sizing, and placing fonts
+          for a landing page can lead to decision fatigue somewhere we attention
+          is not a priority. There is also a risk of choosing a font that work
+          well on desktop but awful on mobile, and visa versa.
+        </p>
+        <h2>Core Concept</h2>
+        <p>
+          Simple sans-serif fonts are a cornerstone of Swiss design, emphasising
+          clarity, neutrality, and functionality.
+        </p>
+        <p>
+          Their unadorned, geometric shapes reflect the Swiss design philosophy
+          (adopted by this system) of &quot;less is more,&quot; enabling content
+          to take centre stage without distraction, most importantly from the
+          call to action.
+        </p>
+        <p>
+          This is paired with using highly supported fonts to ensure consistent
+          rendering across different devices and browsers, maintaining a
+          polished and professional appearance. This enhances readability and
+          user experience, which are critical for capturing attention and
+          driving conversions.
+        </p>
+        <h2>Only 3 Fonts</h2>
+        <p>
+          This can be combined into the implementation of this System which is
+          to start with System UI, followed by San-Serif, followed by good old
+          Arial.
+        </p>
+        <pre><code class="language-css">
+body {
+  font-family: &quot;system-ui&quot;, sans-serif, Arial;
+}
+        </code></pre>
+        <p>This gives consistency over devices, readability, and clarity.</p>
+        <h2>Sizing</h2>
+        <p>
+          To keep things simple and balanced, every font size, letter spacing is
+          derived from a scaling factor
+        </p>
+        <pre><code class="language-css">
+:root {
+  --example-scaling-factor: 1.25;
+}
+...
+  h1 {
+    --h1-base-size: calc(var(--example-scaling-factor) * 2rem);
+    --h1-font-size: clamp(
+    var(--h1-base-size),
+    5vw,
+    calc(1.5 * var(--h1-base-size))
+    );
+    font-size: var(--h1-font-size);
+    line-height: 0.95;
+    font-weight: 700;
+    letter-spacing: calc(var(--h1-font-size) * -0.04);
+    text-wrap: balance;
+  }
+        </code></pre>
+        <p>Currently only five titles are used.</p>
+        <h6>Heading 1 (Display)</h6>
+        <p>Like a good sidekick, this is for heroes only.</p>
+        <h6>Heading 1</h6>
+        <p>
+          This can be used for a hero should the headline be a little long, but
+          generally to head a page or prominent section.
+        </p>
+        <h6>Heading 2</h6>
+        <p>
+          For heading non-main sections, like &quot;About Me&quot; or &quot;How
+          it works&quot;.
+        </p>
+        <h6>Heading 3</h6>
+        <p>
+          This is good for heading feature or benefit paragraphs, where there
+          are many, but not too many... 2-4.
+        </p>
+        <h6>Heading 6</h6>
+        <p>
+          Used as a heading for text that is in a list format, like this section
+          right here.
+        </p>
+        <h3>Responsiveness</h3>
+        <p>
+          Each font-size and letter spacing is calculated in a way that will
+          ensure that it will work on any size screen, and without having to
+          implement media queries at every junction.
+        </p>
+        <p>
+          This is done by using viewport width, the scaling factor, and some
+          maths to not only work at every resolution but to look good doing so.
+        </p>
+        <h2>Landing pages and Article Pages</h2>
+        <p>
+          In the current form, Landing Pages will reset the margins and padding
+          to zero, but will have them built in for long form pieces such as
+          blogs.
+        </p>
+      </div>
+      <div class="sized-box-large"></div>
+    </section>
+  </body>
+  <script>
+    // JavaScript for tab functionality
+    const buttons = document.querySelectorAll(".tab-button");
+    const sections = document.querySelectorAll("section");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        // Remove active class from all buttons and sections
+        buttons.forEach((btn) => btn.classList.remove("active"));
+        sections.forEach((section) => section.classList.remove("active"));
+
+        // Add active class to the clicked button and corresponding section
+        button.classList.add("active");
+        const target = button.getAttribute("data-target");
+        document.getElementById(target).classList.add("active");
+      });
+    });
+  </script>
+  <script>
+    // JavaScript to handle the slider
+    const slider = document.getElementById("scalingSlider");
+    const output = document.getElementById("scalingValue");
+
+    slider.addEventListener("input", () => {
+      const value = slider.value;
+      // Update the CSS variable
+      document.documentElement.style.setProperty(
+        "--example-scaling-factor",
+        value
+      );
+      // Update the displayed value
+      output.textContent = value;
+    });
+  </script>
+</html>

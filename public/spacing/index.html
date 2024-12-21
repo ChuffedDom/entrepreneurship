@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../reset.css" />
+    <link rel="stylesheet" href="../colour.css" />
+    <link rel="stylesheet" href="../typography.css" />
+    <link rel="stylesheet" href="../layout.css" />
+    <title>Spacing</title>
+    <style>
+      :root {
+        --example-scaling-factor: 1.25;
+        background-color: var(--white);
+        color: var(--black);
+      }
+
+      .examples {
+        width: auto;
+        max-width: 1200px;
+        margin: 0 auto;
+        font-family: system-ui;
+      }
+
+      .examples small {
+        color: var(--accent);
+      }
+
+      .examples .sized-box-small {
+        height: min(calc(1vw * var(--example-scaling-factor)), 1rem);
+        width: 100%;
+        background-color: brown;
+        transition: background-color 0.3s ease;
+      }
+
+      .examples .sized-box-medium {
+        height: min(calc(2vw * var(--example-scaling-factor)), 2rem);
+        width: 100%;
+        background-color: blue;
+        transition: background-color 0.3s ease;
+      }
+
+      .examples .sized-box-large {
+        height: min(calc(4vw * var(--example-scaling-factor)), 4rem);
+        width: 100%;
+        background-color: red;
+        transition: background-color 0.3s ease;
+      }
+
+      .examples .sized-box-massive {
+        height: min(calc(16vw * var(--example-scaling-factor)), 16rem);
+        width: 100%;
+        background-color: green;
+        transition: background-color 0.3s ease;
+      }
+
+      .transparent {
+        background-color: transparent !important;
+      }
+
+      .examples .system-ui {
+        font-family: system-ui;
+      }
+
+      .examples .display {
+        --display-base-size: calc(var(--example-scaling-factor) * 3rem);
+        --display-font-size: clamp(
+          var(--display-base-size),
+          10vw,
+          calc(1.5 * var(--display-base-size))
+        );
+        font-size: var(--display-font-size);
+        line-height: 0.95;
+        font-weight: 700;
+        letter-spacing: calc(var(--display-font-size) * -0.04);
+        text-wrap: balance;
+        overflow-wrap: break-word;
+      }
+
+      .examples h1 {
+        --h1-base-size: calc(var(--example-scaling-factor) * 2rem);
+        --h1-font-size: clamp(
+          var(--h1-base-size),
+          5vw,
+          calc(1.5 * var(--h1-base-size))
+        );
+        font-size: var(--h1-font-size);
+        line-height: 0.95;
+        font-weight: 700;
+        letter-spacing: calc(var(--h1-font-size) * -0.04);
+        text-wrap: balance;
+      }
+      .examples h2 {
+        --h2-base-size: calc(var(--example-scaling-factor) * 1.5rem);
+        --h2-font-size: clamp(
+          var(--h2-base-size),
+          4vw,
+          calc(1.5 * var(--h2-base-size))
+        );
+        font-size: var(--h2-font-size);
+        font-weight: 700;
+        letter-spacing: calc(var(--h2-font-size) * -0.04);
+        text-wrap: balance;
+      }
+      .examples h3 {
+        --h3-base-size: calc(var(--example-scaling-factor) * 1.25rem);
+        --h3-font-size: clamp(
+          var(--h3-base-size),
+          3vw,
+          calc(1.5 * var(--h3-base-size))
+        );
+        font-size: var(--h3-font-size);
+        font-weight: 700;
+        letter-spacing: calc(var(--h3-font-size) * -0.04);
+      }
+      .examples h4 {
+        font-size: clamp(1rem, 2vw, 1.5rem);
+        font-weight: 700;
+        letter-spacing: -0.03vw;
+      }
+
+      .examples p {
+        font-size: calc(1rem * var(--example-scaling-factor));
+        line-height: 2;
+      }
+
+      .spacing-tool {
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 3rem;
+        padding-top: 3rem;
+        color: var(--black);
+      }
+
+      .slider-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        max-width: 600px;
+      }
+
+      .slider-container label {
+        font-weight: bold;
+      }
+
+      .slider-container input {
+        width: 100%;
+      }
+
+      .show-boxes-toggle {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: auto;
+        gap: 0.5rem;
+      }
+
+      input[type="checkbox"] {
+        width: 1.2rem;
+        height: 1.2rem;
+        accent-color: var(--primary);
+      }
+
+      /* Styling the code block */
+      pre {
+        background-color: var(--primary);
+        color: var(--white);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto; /* Horizontal scrolling for long lines */
+        font-family: "Fira Code", monospace;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 3rem;
+      }
+
+      code {
+        display: block;
+        color: var(--white);
+      }
+
+      /* Highlighting specific syntax */
+      .language-css .token.property {
+        color: #98c379; /* Properties */
+      }
+
+      .language-css .token.punctuation {
+        color: #d19a66; /* Brackets, colons */
+      }
+
+      .language-css .token.function,
+      .language-css .token.unit {
+        color: #61afef; /* Functions and units */
+      }
+
+      .language-css .token.number {
+        color: #d19a66; /* Numbers */
+      }
+
+      .language-css .token.variable {
+        color: #c678dd; /* Variables */
+      }
+    </style>
+  </head>
+  <body>
+    <section class="light">
+      <div class="sized-box-small"></div>
+      <a style="padding-left: 1vw; font-size: 1.5rem" href="/">&#8592; Home</a>
+      <div class="sized-box-small"></div>
+    </section>
+    <div class="spacing-tool">
+      <h1>Spacing Tool</h1>
+      <div class="sized-box-small"></div>
+      <p>
+        To create space between elements, sized boxes are used in comkbination
+        which changes in relation to the font scale and width of the device
+        resolution. <strong>View on desktop to check all resolutions.</strong>
+      </p>
+      <div class="sized-box-large"></div>
+      <!-- Slider to control scaling factor -->
+      <div class="slider-container">
+        <label for="scalingSlider" class="output">
+          Scaling Factor: <span id="scalingValue">1.25</span>
+        </label>
+        <input
+          type="range"
+          id="scalingSlider"
+          min="1.0"
+          max="2.0"
+          step="0.01"
+          value="1.25"
+        />
+        <div class="sized-box-small"></div>
+        <div class="show-boxes-toggle">
+          <input type="checkbox" id="toggleCheckbox" checked />
+          <label for="toggleCheckbox" style="white-space: nowrap"
+            >Show Sized Boxes</label
+          >
+        </div>
+        <div class="sized-box-small"></div>
+      </div>
+      <div class="sized-box-medium"></div>
+    </div>
+
+    <div class="examples">
+      <div id="system-ui" class="active">
+        <div class="system-ui">
+          <div
+            class="sized-box-large"
+            style="color: var(--white); font-weight: bold; text-align: end"
+          >
+            Sized Box Large
+          </div>
+          <h1 class="display">Spacing in Design</h1>
+          <div
+            class="sized-box-small"
+            style="color: var(--white); font-weight: bold; text-align: end"
+          >
+            Small Sized Box
+          </div>
+          <p>
+            Check the box above to hide and view the sized boxes. You can view
+            how without margins and padding you can set height in a way that
+            reacts to the size of the device. Small screen, small heights. It's
+            that simple.
+          </p>
+
+          <div
+            class="sized-box-small"
+            style="color: var(--white); font-weight: bold; text-align: end"
+          >
+            Sized Box Small
+          </div>
+          <div
+            class="sized-box-medium"
+            style="color: var(--white); font-weight: bold; text-align: end"
+          >
+            Sized Box Medium
+          </div>
+          <div
+            class="sized-box-large"
+            style="color: var(--white); font-weight: bold; text-align: end"
+          >
+            Sized Box Large
+          </div>
+          <div style="max-width: 30rem">
+            <h3>Work smart, not hard</h3>
+            <div
+              class="sized-box-small"
+              style="color: var(--white); font-weight: bold; text-align: end"
+            >
+              Sized Box Small
+            </div>
+            <p>
+              By using sized boxes of predefined heights, you don't have to
+              space with endless number of margins and padding to just move
+              something a little further down.
+            </p>
+            <div
+              class="sized-box-massive"
+              style="color: var(--white); font-weight: bold; text-align: end"
+            >
+              Sized Box Massive
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="light">
+      <div class="long-form">
+        <h1>Spacing</h1>
+        <p>
+          Elements need to have space between them to breath. Showing a block of
+          text that is trying and convert a visitor therefore follows the
+          principle of <em>Legible as fuck</em> and
+          <em>Don't Fear the Whitespace</em>.
+        </p>
+        <h2>Whitespace</h2>
+        <p>
+          Whitespace is an active element in design that provides breathing
+          room, helping to guide the viewer’s focus and emphasise key content.
+        </p>
+        <p>
+          By balancing negative space with visual elements, it enhances
+          readability, creates structure, and fosters a clean, professional
+          aesthetic.
+        </p>
+        <p>
+          <img
+            src="https://cdn.shopify.com/s/files/1/0558/6413/1764/files/Swiss_Style_Poster_Design_26_1024x1024.jpg?v=1694015363"
+            alt="A collection of posters with minimal text and large spacing"
+          />
+        </p>
+        <p>
+          The problem this is solving is that when trying to design a layout for
+          a landing page, there is a tendency to cram in elements without
+          meaning and when stepping back it viewed as a whole without the
+          question of &quot;is the attention of the visitor at each section
+          ensured&quot;.
+        </p>
+        <h2>Core Concept</h2>
+        <p>
+          The Entrepreneurship System sets landing page text to have no padding
+          and no margin (long-form will have though) but instead borrows from
+          Flutter to use sized boxes to space out elements.
+        </p>
+        <p>
+          This is because, controlling the space with margins can become
+          cumbersome when it comes making it responsive.
+        </p>
+        <p>
+          Basically if you set a margin to change the space, you end up writing
+          a ton of class for each element and section.
+        </p>
+        <h2>Sized Boxes</h2>
+        <p>
+          So instead, a Sized Box is placed to create space, and because it is
+          calculated from the same scaling factor for font sizing and viewport
+          width, the spacing is proportionate and makes sense over various
+          devices.
+        </p>
+        <pre><code class="language-html">&lt;h1 class=&quot;display&quot;&gt;Live Rapid Prototyping&lt;/h1&gt;
+        &lt;div class=&quot;sized-box-small&quot;&gt;&lt;/div&gt;
+        &lt;p&gt;
+          Startups face immense pressure to move quickly without sacrificing quality. Rapid prototyping allows teams to test ideas, iterate designs, and gather user feedback efficiently. By prioritizing functionality over perfection, startups can avoid costly missteps and deliver a product that aligns with both user needs and business goals.
+        &lt;/p&gt;
+        </code></pre>
+        <pre><code class="language-css">.sized-box-small {
+          height: min(calc(1vw * var(--example-scaling-factor)), 1rem);
+          width: 1rem;
+        }
+        </code></pre>
+        <h2>Usage</h2>
+        <p>
+          Sized boxes can be used in anyway needed. But as a bit of guidance:
+        </p>
+        <h6>Sized Box Small</h6>
+        <p>
+          For a bit of a gap between large titles and paragraph text. It will be
+          nearly nothing on mobile and a bit of room for desktop.
+        </p>
+        <h6>Sized Box Medium</h6>
+        <p>
+          To space medium sized titles with a 5-10 words from paragraph text.
+        </p>
+        <h6>Sized Box Large</h6>
+        <p>
+          Used to space two different elements from each other, like an image
+          and a title.
+        </p>
+
+        <h6>Sized Box Massive</h6>
+
+        <p>Basically for upper and lower padding for entire sections.</p>
+      </div>
+      <div class="sized-box-massive"></div>
+    </section>
+  </body>
+  <script>
+    // JavaScript to handle the slider
+    const slider = document.getElementById("scalingSlider");
+    const output = document.getElementById("scalingValue");
+
+    slider.addEventListener("input", () => {
+      const value = slider.value;
+      // Update the CSS variable
+      document.documentElement.style.setProperty(
+        "--example-scaling-factor",
+        value
+      );
+      // Update the displayed value
+      output.textContent = value;
+    });
+
+    // Toggle visibility for all sized boxes using the checkbox
+    const toggleCheckbox = document.getElementById("toggleCheckbox");
+    const boxes = document.querySelectorAll(
+      ".examples .sized-box-small, .examples .sized-box-medium, .examples .sized-box-large, .examples .sized-box-massive"
+    );
+
+    toggleCheckbox.addEventListener("change", () => {
+      if (toggleCheckbox.checked) {
+        boxes.forEach((box) => {
+          box.classList.remove("transparent"); // Show boxes
+        });
+      } else {
+        boxes.forEach((box) => {
+          box.classList.add("transparent"); // Hide boxes
+        });
+      }
+    });
+  </script>
+</html>
