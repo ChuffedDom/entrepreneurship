@@ -125,8 +125,7 @@
       }
 
       .examples {
-        width: auto;
-        max-width: 1200px;
+        max-width: clamp(312px, 80vw, 1200px);
         margin: 0 auto;
       }
 
@@ -171,7 +170,7 @@
       }
 
       .typographic-sizing-tool {
-        max-width: 1200px;
+        max-width: clamp(312px, 80vw, 1200px);
         margin: 0 auto;
         gap: 3rem;
         padding-top: 3rem;
@@ -218,6 +217,7 @@
 
       .tabs {
         display: flex;
+        flex-wrap: wrap;
         gap: 0.5rem;
         margin: 1rem 0;
       }

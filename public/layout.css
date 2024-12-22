@@ -5,15 +5,13 @@ body {
 }
 
 .long-form {
-  max-width: 1200px;
+  max-width: clamp(312px, 80vw, 1200px);
   margin: 0 auto;
-  padding: 4px;
 }
 
 .component {
-  max-width: 1200px;
+  max-width: clamp(312px, 80vw, 1200px);
   margin: 0 auto;
-  padding: 4px;
 }
 
 .sized-box-small {
@@ -35,7 +33,7 @@ body {
 }
 
 .sized-box-massive {
-  height: min(calc(16vw * var(--scaling-factor)), 16rem);
+  height: min(calc(16vw * var(--scaling-factor)), 8rem);
   width: 1rem;
   transition: background-color 0.3s ease;
 }
