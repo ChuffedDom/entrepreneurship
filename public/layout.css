@@ -42,3 +42,21 @@ body {
 img {
   border-radius: 1rem;
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: min(calc(8vw * var(--scaling-factor)), 8rem);
+}
+
+.grid-item {
+  overflow: visible;
+  min-width: 320px;
+  width: 100%;
+}
+
+.grid-item hr {
+  height: 0.4rem;
+  background-color: var(--black);
+  margin: 0.4rem 0;
+}
