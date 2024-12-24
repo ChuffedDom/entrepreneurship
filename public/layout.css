@@ -60,3 +60,9 @@ img {
   background-color: var(--black);
   margin: 0.4rem 0;
 }
+
+section.primary .grid-item hr {
+  height: 0.4rem;
+  background-color: var(--white);
+  margin: 0.4rem 0;
+}

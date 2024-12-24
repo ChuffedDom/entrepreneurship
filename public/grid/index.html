@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../reset.css" />
+    <link rel="stylesheet" href="../colour.css" />
+    <link rel="stylesheet" href="../typography.css" />
+    <link rel="stylesheet" href="../layout.css" />
+    <title>Grid</title>
+  </head>
+  <style>
+    :root {
+      --max-width-example: 1200px;
+      --column-selector: 320px;
+    }
+    .grid-tool {
+      padding-top: 3rem;
+    }
+
+    .example-section {
+      max-width: clamp(312px, 80vw, var(--max-width-example));
+      margin: 0 auto;
+      border-style: dashed;
+      border-top-width: 0px;
+      border-bottom-width: 0px;
+      border-left-width: 2px;
+      border-right-width: 2px;
+      border-left-color: var(--white);
+      border-right-color: var(--white);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(var(--column-selector), 1fr)
+      );
+      gap: min(calc(8vw * var(--scaling-factor)), 8rem);
+    }
+
+    .grid-item {
+      overflow: visible;
+      min-width: var(--column-selector);
+      width: 100%;
+    }
+
+    button {
+      background-color: var(--primary);
+      padding: 0.5rem 2rem;
+      font-weight: bold;
+      color: var(--call-to-action);
+      text-transform: uppercase;
+      letter-spacing: 0.2rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--call-to-action);
+    }
+
+    button.active {
+      background-color: var(--call-to-action);
+      padding: 0.5rem 2rem;
+      font-weight: bold;
+      color: var(--black);
+      text-transform: uppercase;
+      letter-spacing: 0.2rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--call-to-action);
+    }
+
+    /* Styling the code block */
+    pre {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto; /* Horizontal scrolling for long lines */
+      font-family: "Fira Code", monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 3rem;
+    }
+
+    code {
+      display: block;
+      color: var(--white);
+    }
+
+    .slider-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+      max-width: 600px;
+    }
+
+    .slider-container label {
+      font-weight: bold;
+    }
+
+    .slider-container input {
+      width: 100%;
+    }
+
+    /* Highlighting specific syntax */
+    .language-css .token.property {
+      color: #98c379; /* Properties */
+    }
+
+    .language-css .token.punctuation {
+      color: #d19a66; /* Brackets, colons */
+    }
+
+    .language-css .token.function,
+    .language-css .token.unit {
+      color: #61afef; /* Functions and units */
+    }
+
+    .language-css .token.number {
+      color: #d19a66; /* Numbers */
+    }
+
+    .language-css .token.variable {
+      color: #c678dd; /* Variables */
+    }
+  </style>
+  <body>
+    <section class="primary">
+      <div class="sized-box-small"></div>
+      <a style="padding-left: 1vw; font-size: 1.5rem" href="/">&#8592; Home</a>
+      <div class="sized-box-small"></div>
+    </section>
+    <section class="primary">
+      <div class="grid-tool component">
+        <h1>Grid Tool</h1>
+        <div class="sized-box-small"></div>
+        <p>
+          This is a clear visual of how grid works and adapts with different
+          sizes both generally and specifically for this system.
+          <strong>View on desktop to check all resolutions.</strong>
+        </p>
+        <div class="sized-box-large"></div>
+        <!-- Slider to control scaling factor -->
+        <div class="slider-container">
+          <label for="scalingSlider" class="output">
+            Max width: <span id="scalingValue">1200</span>px
+          </label>
+          <input
+            type="range"
+            id="scalingSlider"
+            min="320"
+            max="1200"
+            step="10"
+            value="1200"
+            oninput="updateMaxWidth()"
+          />
+          <div class="sized-box-small"></div>
+          <div class="column-buttons">
+            <button class="active" id="column-selection-two">2 Columns</button>
+            <button class="" id="column-selection-three">3 Columns</button>
+          </div>
+        </div>
+        <div class="sized-box-medium"></div>
+        <div class="sized-box-small"></div>
+        <div class="sized-box-small"></div>
+      </div>
+    </section>
+    <section class="primary">
+      <div class="grid example-section">
+        <div class="grid-item">
+          <h3>Swiss Design</h3>
+          <hr />
+          <p>
+            Swiss design is characterised by simplicity, functionality, and
+            precision, often featuring clean lines, minimal ornamentation
+          </p>
+        </div>
+        <div class="grid-item">
+          <h3>Grid System</h3>
+          <hr />
+          <p>
+            In Swiss design, the grid system is employed to create balanced and
+            harmonious compositions
+          </p>
+        </div>
+        <div class="grid-item">
+          <h3>Typography</h3>
+          <hr />
+          <p>
+            In Swiss design, typography plays a crucial role, with clean,
+            sans-serif fonts such as Helvetica and Frutiger being used to convey
+            simplicity
+          </p>
+        </div>
+      </div>
+      <div class="sized-box-massive"></div>
+    </section>
+    <section class="light">
+      <div class="long-form">
+        <h1>Grid</h1>
+        <p>
+          Grids employ the Don't Fear the Whitespace principle to arrange small
+          contained copy as a group.
+        </p>
+        <h2>Space and Alignment</h2>
+        <p>
+          As paragraphed items exist as elements in a list, e.g., benefits, how
+          it works, features, each item needs to be clearly separated from one
+          another. However, by employing the Swiss design principles, this
+          separation happens without borders or drop shadows—just space and
+          alignment.
+        </p>
+        <p>
+          <img
+            src="https://31.media.tumblr.com/e0030b3d2f478a50c546cf10d63816bd/tumblr_inline_nk6y33sbkJ1qaux1u.jpg"
+            alt="A poster with text but no lines to indicate separation"
+          />
+        </p>
+        <p>
+          This system solves the problem of arranging similar content in a
+          collection of more than three elements while indicating that each
+          element is individual. To extend this, things in a row of three will
+          see a 50% drop in the third element. This leads to content intended to
+          convert not even being consumed; i.e., layout is a detriment to
+          content.
+        </p>
+        <p>
+          <img
+            class=".example-img"
+            src="GridExample1.png"
+            alt="Graphic to display a group of 3 elements in a row and how only 50% make it to the third element"
+          />
+        </p>
+        <h2>Core Concept</h2>
+        <p>
+          There are many occasions where a landing page must have an unordered
+          collection of copy.
+        </p>
+        <p>For example, having a section for:</p>
+        <ul>
+          <li>Benefits</li>
+          <li>Features</li>
+          <li>How it works</li>
+          <li>Principles</li>
+          <li>etc.</li>
+        </ul>
+        <p>
+          Studying HotJar recordings reveals many common issues that arise from
+          a row of 3 pieces of copy, the most important of which is the above
+          50% drop-off.
+        </p>
+        <p>
+          This is why this system only shows an unordered collection of copy in
+          a maximum of 2 columns. Experimentation has shown that this has led to
+          higher conversions on the page.
+        </p>
+        <h2>The Problem with Three</h2>
+        <p>Having two columns leads to fixing a whole raft of other issues.</p>
+        <p>
+          It starts with how you divide up your page horizontally. If we take a
+          width of 900px (a very reasonable and expected width), then three
+          columns give you 300px per column.
+        </p>
+        <p>
+          Adding a gap of 16px between the elements means that for copy, you
+          have 868px or 289px per element. But even that is tight; it looks like
+          this:
+        </p>
+        <p>
+          <img
+            class=".example-img"
+            src="GridExample2.png"
+            alt="An example webpage with three copy elements next to each other with a total width of 900 pixels"
+          />
+        </p>
+        <p>
+          You can fix this in many ways, but each one introduces a new issue in
+          the process.
+        </p>
+        <h3>Cards</h3>
+        <p>
+          Adding a border around each element makes it possible to create more
+          separation, but you then have to add padding to each one, and now you
+          are losing more width for the copy itself.
+        </p>
+        <p>
+          <img
+            class=".example-img"
+            src="GridExample3.png"
+            alt="An example webpage with 3 copy elements next to each other with a total width of 900 pixels with each element with borders and padding"
+          />
+        </p>
+        <p>
+          Whilst this does technically work, it adds a busy aesthetic to the
+          layout, which goes against any simple design.
+        </p>
+        <h3>More Gap</h3>
+        <p>
+          Another way to fix this problem is to increase the gap between them;
+          this is worse because you lose content width and end up increasing in
+          height awkwardly, and you are now wrapping (and breaking) words that
+          might not be the intention.
+        </p>
+        <p>
+          <img
+            class=".example-img"
+            src="GridExample4.png"
+            alt="An example webpage with 3 copy elements next to each other with a total width of 900 pixels with extra gap between them"
+          />
+        </p>
+        <p>
+          This can be remedied by making the font smaller, but then you
+          introduce an accessibility issue.
+        </p>
+        <h3>Center Align Text</h3>
+        <h3>But, it Doesn't Matter</h3>
+        <p>
+          So you wrangle all the elements and get it working at 900px wide. What
+          happens when you go under that width? This is where all the above
+          fixes multiply the issue fast. Line length gets painfully short, and
+          element height becomes extremely disproportionate, etc. Here is a
+          width of 480px.
+        </p>
+        <p>
+          <img
+            class=".example-img"
+            src="GridExample5.png"
+            alt="An example webpage with 3 copy elements next to each other with a total width of 480 pixels with each element with borders and padding"
+          />
+        </p>
+        <p>
+          Now what? The most obvious answer is to switch to a full-column
+          layout, aka mobile view. But then that looks weird. Every width that
+          can be used has an experience of not sitting on the page correctly.
+        </p>
+        <p>
+          <img
+            class=".example-img"
+            src="GridExample6.png"
+            alt="An example webpage with 3 copy elements next to each other with a total width of 480 pixels with each element with borders and padding and the width is varied to show the awkward nature of the layout"
+          />
+        </p>
+        <p>
+          Every element is either too wide because it's not yet at a mobile
+          resolution or oddly placed because it's narrow but displaced from the
+          hard left-hand margin.
+        </p>
+        <h3>The solution is 2</h3>
+        <p>
+          The issues above result from the fact that 3 columns work on desktop
+          but not on mobile, and a singular column works on mobile but not on
+          desktop.
+        </p>
+        <p>
+          Two columns gives you everything you need in the layout. From the
+          principle Form Follows Function, you see this decision is greater than
+          aesthetics of three.
+        </p>
+        <p>
+          <img
+            class=".example-img"
+            src="GridExample7.png"
+            alt="A series of 2 column elements at varying viewport widths from 1200px to 320px"
+          />
+        </p>
+        <p>
+          Here, we can see design consistency, everything legible, everything at
+          the right width, and the added bonus of ensuring that visitors will
+          read the third element.
+        </p>
+        <h2>Usage</h2>
+        <p>
+          In the CSS, you can give each item in the grid and the grid itself a
+          class. The constraints of the elements will move the layout to a
+          two-column layout.
+        </p>
+        <pre><code class="language-html">
+&lt;div class=&quot;grid&quot;&gt;
+    &lt;div class=&quot;grid-item&quot;&gt;
+        &lt;h3&gt;Swiss Design&lt;/h3&gt;
+        &lt;hr /&gt;
+        &lt;p&gt;
+            Swiss design is characterised by simplicity, functionality, and
+            precision, often featuring clean lines, minimal ornamentation, and a
+            focus on materials and craftsmanship to create elegant, understated
+            products that convey a sense of quality and sophistication.
+        &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;grid-item&quot;&gt;
+        &lt;h3&gt;Grid System&lt;/h3&gt;
+        &lt;hr /&gt;
+        &lt;p&gt;
+            In Swiss design, the grid system is employed to create balanced and
+            harmonious compositions, often using a combination of horizontal and
+            vertical lines to establish a sense of order and structure.
+        &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;grid-item&quot;&gt;
+        &lt;h3&gt;Typography&lt;/h3&gt;
+        &lt;hr /&gt;
+        &lt;p&gt;
+            In Swiss design, typography plays a crucial role, with clean, sans-serif
+            fonts such as Helvetica and Frutiger being used to convey simplicity,
+            clarity, and professionalism through their geometric shapes and
+            straightforward legibility.
+        &lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+        <p>
+          The layout automatically changes to a singular column at mobile
+          resolutions, and gaps and spacing are maintained at all resolutions.
+        </p>
+        <h2>Additional</h2>
+        <h6>When 3 is the Magic Number</h6>
+        <p>
+          If you have a collection that is not listed in paragraphs, then there
+          is a case for three columns. For example, elements are a graphic and
+          3-4 words. You are not going to experience the problems above.
+        </p>
+        <h6>Keep it Simple</h6>
+        <p>
+          It is a common design trend to have a graphic, a title, some text, and
+          a decoration. But this is too much and fights against itself. Limit to
+          2, ideally, a title or number and text.
+        </p>
+        <div class="sized-box-massive"></div>
+      </div>
+    </section>
+  </body>
+  <script>
+    function updateMaxWidth() {
+      const slider = document.getElementById("scalingSlider");
+      const maxValue = parseInt(slider.max);
+      const currentValue = parseInt(slider.value);
+      const output = document.getElementById("scalingValue");
+
+      // Update the --max-width-example variable
+      document.documentElement.style.setProperty(
+        "--max-width-example",
+        `${currentValue}px`
+      );
+
+      // Display the updated value
+      const scalingValueElement = document.getElementById("scalingValue");
+      scalingValueElement.textContent = maxValue;
+      // Update the displayed value
+      output.textContent = currentValue;
+    }
+  </script>
+  <script>
+    function updateColumnSelectionTwo() {
+      const buttonTwo = document.getElementById("column-selection-two");
+      const buttonThree = document.getElementById("column-selection-three");
+
+      buttonThree.classList.remove("active");
+      buttonTwo.classList.add("active");
+      document.documentElement.style.setProperty("--column-selector", "320px");
+    }
+
+    function updateColumnSelectionThree() {
+      const buttonThree = document.getElementById("column-selection-three");
+      const buttonTwo = document.getElementById("column-selection-two");
+
+      buttonTwo.classList.remove("active");
+      buttonThree.classList.add("active");
+      document.documentElement.style.setProperty("--column-selector", "200px");
+    }
+
+    // Add event listeners to the buttons
+    document
+      .getElementById("column-selection-two")
+      .addEventListener("click", updateColumnSelectionTwo);
+    document
+      .getElementById("column-selection-three")
+      .addEventListener("click", updateColumnSelectionThree);
+  </script>
+</html>
