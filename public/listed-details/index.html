@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../reset.css" />
+    <link rel="stylesheet" href="../colour.css" />
+    <link rel="stylesheet" href="../typography.css" />
+    <link rel="stylesheet" href="../layout.css" />
+    <title>Listed Details</title>
+    <style>
+      .listed-example {
+        max-width: clamp(312px, 80vw, 500px);
+      }
+
+      .buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      button {
+        background-color: var(--primary);
+        padding: 0.5rem 2rem;
+        font-weight: bold;
+        color: var(--call-to-action);
+        text-transform: uppercase;
+        letter-spacing: 0.2rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--call-to-action);
+      }
+
+      button.active {
+        background-color: var(--call-to-action);
+        padding: 0.5rem 2rem;
+        font-weight: bold;
+        color: var(--black);
+        text-transform: uppercase;
+        letter-spacing: 0.2rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--call-to-action);
+      }
+
+      .hide {
+        display: none;
+      }
+
+      .listed-details-tool {
+        padding-top: 3rem;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.0/lottie.min.js"></script>
+  </head>
+  <body>
+    <section class="primary">
+      <div class="sized-box-small"></div>
+      <a style="padding-left: 1vw; font-size: 1.5rem" href="/">&#8592; Home</a>
+      <div class="sized-box-small"></div>
+    </section>
+    <section class="primary">
+      <div class="component listed-details-tool">
+        <h1>Listed Details Tool</h1>
+        <div class="sized-box-small"></div>
+        <p>Add and remove elements to view the balance of the component.</p>
+        <div class="sized-box-large"></div>
+        <div class="buttons">
+          <button class="active" id="example-heading">Heading</button>
+          <button class="active" id="example-paragraph">Paragraph</button>
+          <button id="example-number">Number</button>
+          <button id="example-image">Image</button>
+          <button id="example-graphic">Graphic</button>
+          <button id="example-animation">Animation</button>
+        </div>
+        <div class="sized-box-large"></div>
+        <div class="listed-example">
+          <div class="grid-item">
+            <div
+              id="lottie-animation"
+              style="width: 300px; height: 300px"
+              class="hide"
+            ></div>
+
+            <img
+              class="hide"
+              id="image-example"
+              src="https://unsplash.it/640
+            "
+              alt="A random image from unsplash"
+            />
+            <svg
+              class="hide"
+              id="graphic-example"
+              xmlns="http://www.w3.org/2000/svg"
+              width="3rem"
+              height="3rem"
+              style="fill: var(--white)"
+              viewBox="0 0 640 512"
+            >
+              <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+              <path
+                d="M96 64c0-17.7 14.3-32 32-32l320 0 64 0c70.7 0 128 57.3 128 128s-57.3 128-128 128l-32 0c0 53-43 96-96 96l-192 0c-53 0-96-43-96-96L96 64zM480 224l32 0c35.3 0 64-28.7 64-64s-28.7-64-64-64l-32 0 0 128zM32 416l512 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 480c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+              />
+            </svg>
+            <h1 class="display hide" id="number-example">1.</h1>
+            <h3 id="heading-example">A benefit of the product</h3>
+            <p id="paragraph-example">
+              Showing off what the user can take away from the product as an
+              experience
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="sized-box-massive"></div>
+    </section>
+    <section class="light">
+      <div class="long-form">
+        <h1>Listed Details</h1>
+        <p>
+          A common design and content pattern to convey details in a list to
+          simplify and help conversion. This can be seen as:
+        </p>
+        <ul>
+          <li>a list of benefits</li>
+          <li>a list of features</li>
+          <li>"how it works" as an ordered list</li>
+          <li>etc.</li>
+        </ul>
+        <p>
+          This framework uses the <strong>Legible as fuck</strong> and
+          <strong>Form over Function</strong> principles to build the structure
+          of these lists.
+        </p>
+
+        <h2>Core Concept</h2>
+        <p>
+          There are multiple elements that can be added to an item in Listed
+          Details:
+        </p>
+        <ul>
+          <li>Heading</li>
+          <li>Paragraph</li>
+          <li>Number</li>
+          <li>Image (static or video)</li>
+          <li>Graphic</li>
+          <li>Animation</li>
+        </ul>
+        <p>This system only lays out two elements per item.</p>
+        <p>
+          When we add three or more, it is very easy to make a component
+          left-heavy in design the more elements you add.
+        </p>
+        <p>
+          This is often fixed by center-aligning all of the elements, but the
+          problem here is that as humans, we are not tuned to read text in a
+          center-aligned fashion. So what gets lost is the readability of the
+          thing you want people to read.
+        </p>
+
+        <h2>Elements that Flow</h2>
+        <p>
+          As every component on the page has the job of aiding conversion, what
+          type of element is used has to have a clear purpose in how it will
+          facilitate that conversion.
+        </p>
+        <p>
+          An animation showing a growth of knowledge can do a better job than a
+          stock photo of someone reading a book.
+        </p>
+        <p>
+          A number for ordered items communicates more about the stage of a
+          process than a fancy graphic.
+        </p>
+        <p>
+          An abstract representation of a product explains more to a potential
+          user than marketing fluff.
+        </p>
+
+        <h2>Iteration</h2>
+        <p>
+          As this is a game of <em>ship fast; ship small; ship often</em>, don't
+          create blockers by focusing on the complex elements first. If you have
+          Listed Details that are unordered, just go with a heading and
+          paragraph; otherwise, if it is ordered, go with a number and
+          paragraph.
+        </p>
+      </div>
+    </section>
+    <script>
+      // Load the Lottie animation
+      lottie.loadAnimation({
+        container: document.getElementById("lottie-animation"), // ID of the container
+        renderer: "svg", // Render type: 'svg', 'canvas', 'html'
+        loop: true, // Whether the animation should loop
+        autoplay: true, // Whether the animation should autoplay
+        path: "lottie.json", // Path to the Lottie JSON file
+      });
+    </script>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document
+        .getElementById("example-heading")
+        .addEventListener("click", function () {
+          document.getElementById("example-heading").classList.toggle("active");
+          document.getElementById("heading-example").classList.toggle("hide");
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      document
+        .getElementById("example-paragraph")
+        .addEventListener("click", function () {
+          document
+            .getElementById("example-paragraph")
+            .classList.toggle("active");
+          document.getElementById("paragraph-example").classList.toggle("hide");
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      document
+        .getElementById("example-number")
+        .addEventListener("click", function () {
+          document.getElementById("example-number").classList.toggle("active");
+          document.getElementById("number-example").classList.toggle("hide");
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      document
+        .getElementById("example-image")
+        .addEventListener("click", function () {
+          document.getElementById("example-image").classList.toggle("active");
+          document.getElementById("image-example").classList.toggle("hide");
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      document
+        .getElementById("example-graphic")
+        .addEventListener("click", function () {
+          document.getElementById("example-graphic").classList.toggle("active");
+          document.getElementById("graphic-example").classList.toggle("hide");
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      document
+        .getElementById("example-animation")
+        .addEventListener("click", function () {
+          document
+            .getElementById("example-animation")
+            .classList.toggle("active");
+          document.getElementById("lottie-animation").classList.toggle("hide");
+        });
+    });
+  </script>
+</html>
