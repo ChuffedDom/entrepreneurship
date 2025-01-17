@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forms</title>
+    <link rel="stylesheet" href="../reset.css" />
+    <link rel="stylesheet" href="../colour.css" />
+    <link rel="stylesheet" href="../typography.css" />
+    <link rel="stylesheet" href="../layout.css" />
+    <style>
+      button {
+        background-color: var(--call-to-action);
+        color: var(--black);
+        font-weight: bold;
+        font-size: calc(1.2rem * var(--scaling-factor));
+        padding: 1rem 2rem;
+        border: 1px solid var(--call-to-action);
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: transform 0.2s ease-in;
+      }
+
+      button:hover {
+        transform: scale(1.01);
+      }
+
+      button:active {
+        transform: scale(0.99);
+        background-color: var(--white);
+      }
+
+      .disabled-button {
+        color: var(--white);
+        background-color: var(--primary-color);
+        pointer-events: none;
+        opacity: 0.8;
+        cursor: not-allowed;
+        border: 1px solid var(--call-to-action);
+      }
+
+      /* Additional styles for input field */
+      input[type="email"] {
+        background-color: transparent;
+        color: var(--white);
+        outline: 2px solid var(--call-to-action);
+        padding: 1rem;
+        border-radius: 0.5rem;
+      }
+
+      .form-control::placeholder {
+        color: var(--white);
+        opacity: 0.75;
+        font-style: italic;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        width: clamp(300px, 100%, 30vw);
+        gap: 0.5rem;
+      }
+
+      .errorMessage {
+        color: red;
+        height: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="primary">
+      <div class="component">
+        <div class="sized-box-massive"></div>
+        <form enctype="multipart/form-data" id="sign-up">
+          <!-- Text field -->
+          <label for="email-field" style="display: none">email</label>
+          <input
+            type="email"
+            id="email-field"
+            class="form-control"
+            placeholder="enter email"
+          />
+          <div class="sized-box-small"></div>
+          <!-- Button -->
+          <button type="submit" id="form-button"></button>
+          <div class="errorMessage" id="error-message"></div>
+        </form>
+        <div class="sized-box-massive"></div>
+      </div>
+    </section>
+    <section class="light">
+      <div class="component">
+        <h1>Email is: <span id="test-display"></span></h1>
+      </div>
+    </section>
+    <script>
+      // Store state of the app
+      const appState = {
+        email: "not set",
+        error: "",
+        buttonText: "Submit",
+      };
+
+      // Elements that listen to state changes
+      const listeners = [];
+
+      // Tell an element to listen
+      function listen(callback) {
+        listeners.push(callback);
+      }
+
+      // Tell listening elements to update themselves
+      function notifyListeners() {
+        listeners.forEach((callback) => {
+          callback(appState);
+        });
+      }
+
+      // Update the state of the app
+      function setState(updater) {
+        updater(appState);
+        notifyListeners();
+        console.log(appState);
+      }
+
+      // Initial State
+      const emailDisplay = document.getElementById("test-display");
+      const errorMessage = document.getElementById("error-message");
+      const button = document.getElementById("form-button");
+
+      listen((state) => {
+        emailDisplay.textContent = state.email;
+      });
+
+      listen((state) => {
+        errorMessage.textContent = state.error;
+      });
+
+      listen((state) => {
+        button.textContent = state.buttonText;
+      });
+
+      notifyListeners();
+
+      // User interaction to that updates state
+      const form = document.getElementById("sign-up");
+      const emailField = document.getElementById("email-field");
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const emailInput = emailField.value;
+        if (emailInput !== "") {
+          setState((state) => {
+            state.error = "";
+            state.email = emailInput;
+            state.buttonText = "Submitting...";
+          });
+          setTimeout(() => {
+            setState((state) => {
+              state.buttonText = "Submitted";
+              button.classList.add("disabled-button");
+            });
+          }, 2000);
+        } else {
+          setState((state) => {
+            state.error = "Please enter an email";
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
