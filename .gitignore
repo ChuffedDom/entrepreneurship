@@ -1,0 +1,6 @@
+# Ignore macOS file system stuff
+.DS_Store
+.AppleDouble
+.Lock-File
+.TemporaryItems
+.Trash
